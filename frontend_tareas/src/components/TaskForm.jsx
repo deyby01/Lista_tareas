@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function TaskForm({ onTaskCreated }) { // Recibe una función como prop
+function TaskForm({ onTaskCreated, apiBaseUrl }) { // Recibe una función como prop
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ function TaskForm({ onTaskCreated }) { // Recibe una función como prop
     try {
       const newTask = { title, description };
       // Hacemos la petición POST a nuestro backend Django
-      await axios.post('http://127.0.0.1:8000/api/tasks/', newTask);
+      await axios.post(`${apiBaseUrl}/api/tasks/`, newTask);
 
       setTitle(''); // Limpiamos el campo de título
       setDescription(''); // Limpiamos el campo de descripción

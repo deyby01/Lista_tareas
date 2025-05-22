@@ -8,10 +8,13 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState(null);
 
+  // Usamos la variable de entorno para la URL base de la API
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   const fetchTasks = async () => {
     // ... (código existente de fetchTasks sin cambios)
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/tasks/');
+      const response = await axios.get(`${API_BASE_URL}/api/tasks/`);
       setTasks(response.data);
       setError(null);
     } catch (err) {
@@ -27,7 +30,7 @@ function App() {
   const handleToggleComplete = async (taskId, currentCompletedStatus) => {
     // ... (código existente de handleToggleComplete sin cambios)
     try {
-      await axios.patch(`http://127.0.0.1:8000/api/tasks/${taskId}/`, {
+      await axios.patch(`<span class="math-inline">\{API\_BASE\_URL\}/api/tasks/</span>{taskId}/`, {
         completed: !currentCompletedStatus 
       });
       fetchTasks();
@@ -41,7 +44,7 @@ function App() {
   const handleDeleteTask = async (taskId) => {
     try {
       // Hacemos una petición DELETE a nuestro backend Django
-      await axios.delete(`http://127.0.0.1:8000/api/tasks/${taskId}/`);
+      await axios.delete(`<span class="math-inline">\{API\_BASE\_URL\}/api/tasks/</span>{taskId}/`);
       // Después de eliminar, volvemos a cargar todas las tareas
       // Una optimización sería filtrar la tarea eliminada del estado local 'tasks'
       // setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
