@@ -30,7 +30,7 @@ function App() {
   const handleToggleComplete = async (taskId, currentCompletedStatus) => {
     // ... (código existente de handleToggleComplete sin cambios)
     try {
-      await axios.patch(`<span class="math-inline">\{API\_BASE\_URL\}/api/tasks/</span>{taskId}/`, {
+      await axios.patch(`${API_BASE_URL}/api/tasks/${taskId}/`, {
         completed: !currentCompletedStatus 
       });
       fetchTasks();
@@ -44,7 +44,7 @@ function App() {
   const handleDeleteTask = async (taskId) => {
     try {
       // Hacemos una petición DELETE a nuestro backend Django
-      await axios.delete(`<span class="math-inline">\{API\_BASE\_URL\}/api/tasks/</span>{taskId}/`);
+      await axios.delete(`${API_BASE_URL}/api/tasks/${taskId}/`);
       // Después de eliminar, volvemos a cargar todas las tareas
       // Una optimización sería filtrar la tarea eliminada del estado local 'tasks'
       // setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
