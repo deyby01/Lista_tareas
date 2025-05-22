@@ -62,10 +62,10 @@ function App() {
         <h1>Aplicación de Lista de Tareas (Jueves, 22 de Mayo)</h1>
       </header>
       <main>
-        <TaskForm onTaskCreated={fetchTasks} />
-        <TaskList 
-          tasks={tasks} 
-          error={error} 
+        <TaskForm onTaskCreated={fetchTasks} apiBaseUrl={API_BASE_URL} />
+        <TaskList
+          tasks={tasks}
+          error={error}
           onToggleComplete={handleToggleComplete}
           onDeleteTask={handleDeleteTask} // <-- Pasamos la nueva función
         />
